@@ -1,0 +1,59 @@
+// 1. Grid para el Contenedor de Tarjetas
+.card-grid {
+  display: grid;
+  gap: 20px;
+  // Mobile First: 1 columna por defecto
+  grid-template-columns: 1fr;
+  margin-bottom: 30px;
+
+  // Sobrescribir para Tablets y Escritorio (2 a 4 columnas)
+  @media (min-width: $breakpoint-tablet) {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  }
+}
+
+// 2. Estilos del Componente Card
+.card {
+  background-color: $color-bg-dark; // Fondo blanco puro
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 4px 6px rgba($color-text-dark, 0.08); // Sombra sutil
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.card-title {
+  font-size: 1rem;
+  color: $color-text-light;
+  font-weight: 500;
+}
+
+.card-icon {
+  font-size: 1.5rem;
+  color: $color-primary;
+}
+
+.card-value {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+// Estilos para la variación (change)
+.card-change {
+  font-size: 0.9rem;
+  font-weight: bold;
+}
+
+.positive {
+  color: $color-secondary; // Verde para positivo
+}
+
+.negative {
+  color: #dc3545; // Rojo para negativo (o definir una variable en _variables.scss)
+}

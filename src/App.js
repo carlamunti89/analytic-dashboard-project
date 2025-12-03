@@ -1,6 +1,7 @@
+import Card from "./styles/components/Card";
+
 function App() {
   return (
-    // Aplicamos la clase principal de la rejilla
     <div className="dashboard-container">
       {/* 1. Área del Sidebar */}
       <aside className="sidebar">
@@ -18,7 +19,27 @@ function App() {
       {/* 2. Área del Contenido Principal */}
       <main className="main-content">
         <h1>Dashboard de Analíticas</h1>
-        <p>Aquí se cargará el contenido principal (cards, gráficos, tablas).</p>
+        <div className="card-grid">
+          <Card
+            title="Total de Ventas"
+            value="$45,231"
+            icon="📈"
+            change={12.5}
+          />
+          <Card
+            title="Usuarios Activos"
+            value="3,489"
+            icon="👥"
+            change={-2.1}
+          />
+          <Card
+            title="Tasa de Conversión"
+            value="4.6%"
+            icon="⚡"
+            change={0.8}
+          />
+          <Card title="Pedidos Pendientes" value="12" icon="📦" change={-5.0} />
+        </div>
       </main>
     </div>
   );
