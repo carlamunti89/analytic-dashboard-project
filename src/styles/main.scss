@@ -1,0 +1,12 @@
+// 1. IMPORTAR VARIABLES Y RESET
+@import "base/variables";
+@import "base/reset";
+
+// 2. IMPORTAR ESTILOS DE LAYOUT (Aún no creados, pero los preparamos)
+@import "layout/dashboard-grid";
+@import "layout/sidebar";
+@import "layout/header";
+
+// 3. IMPORTAR ESTILOS DE COMPONENTES (Aún no creados)
+@import "components/card";
+@import "components/button";
