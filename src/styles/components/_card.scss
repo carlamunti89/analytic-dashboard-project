@@ -57,3 +57,25 @@
 .negative {
   color: #dc3545; // Rojo para negativo (o definir una variable en _variables.scss)
 }
+
+// -------------------------------------------------------------
+// ESTILOS PARA LA TARJETA DE GRÁFICO (LineChartCard.js)
+// -------------------------------------------------------------
+
+.chart-card {
+  // Hereda el mismo estilo de tarjeta que las métricas
+  @extend .card;
+
+  // Sobreescribe el padding si es necesario
+  padding: 25px;
+
+  // Ocupa todo el ancho en el grid
+  grid-column: 1 / -1;
+}
+
+.chart-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: $color-text-dark;
+  margin-bottom: 20px;
+}

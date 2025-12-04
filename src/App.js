@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Card from "./components/Card";
+import LineChartCard from "./components/LineChartCard";
 import dashboardData from "./data/dashboardData.json";
 
 function App() {
@@ -61,18 +62,30 @@ function App() {
         {isLoading ? (
           <p>Cargando métricas...</p>
         ) : (
-          <div className="card-grid">
-            {metrics.map((metric) => (
-              <Card
-                key={metric.id}
-                title={metric.title}
-                value={formatValue(metric.value, metric.unit)}
-                icon={metric.icon}
-                change={formatChange(metric.change, metric.change_unit)}
-                changeValue={metric.change}
+          <>
+            <div className="card-grid">
+              {metrics.map((metric) => (
+                <Card
+                  key={metric.id}
+                  title={metric.title}
+                  value={formatValue(metric.value, metric.unit)}
+                  icon={metric.icon}
+                  change={formatChange(metric.change, metric.change_unit)}
+                  changeValue={metric.change}
+                />
+              ))}
+            </div>
+            {/* INICIO DE LOS GRÁFICOS */}
+            <div className="charts-container">
+              <LineChartCard
+                title="Rendimiento de Ventas Mensuales"
+                data={dashboardData.charts[0].data} // Datos de tu JSON
+                dataKey="month" // Clave para el Eje X
+                lineDataKey="ventas" // Clave para la Línea Y
+                unit="$" // Unidad para el Eje Y y Tooltip
               />
-            ))}
-          </div>
+            </div>
+          </>
         )}
       </main>
     </div>
