@@ -1,0 +1,49 @@
+{
+  "keyMetrics": [
+    {
+      "id": 1,
+      "title": "Total de Ventas",
+      "value": 45231,
+      "unit": "$",
+      "icon": "📈",
+      "change": 12.5,
+      "change_unit": "%"
+    },
+    {
+      "id": 2,
+      "title": "Usuarios Activos",
+      "value": 3489,
+      "unit": "",
+      "icon": "👥",
+      "change": -2.1,
+      "change_unit": "%"
+    },
+    {
+      "id": 3,
+      "title": "Tasa de Conversión",
+      "value": 4.6,
+      "unit": "%",
+      "icon": "⚡",
+      "change": 0.8,
+      "change_unit": "pt"
+    },
+    {
+      "id": 4,
+      "title": "Pedidos Pendientes",
+      "value": 12,
+      "unit": "",
+      "icon": "📦",
+      "change": -5.0,
+      "change_unit": "%"
+    }
+  ],
+  "charts": [
+    {
+      "type": "LineChart",
+      "data": [
+        { "month": "Ene", "ventas": 10000 },
+        { "month": "Feb", "ventas": 12000 }
+      ]
+    }
+  ]
+}

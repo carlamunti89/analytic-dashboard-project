@@ -1,7 +1,9 @@
 import React from "react";
 
 // El componente recibirá props para ser reutilizable
-const Card = ({ title, value, icon, change }) => {
+const Card = ({ title, value, icon, change, changeValue }) => {
+  const changeClass = changeValue > 0 ? "positive" : "negative";
+  const arrow = changeValue > 0 ? "↑" : "↓";
   return (
     <div className="card">
       <div className="card-header">
@@ -11,9 +13,9 @@ const Card = ({ title, value, icon, change }) => {
       </div>
       <div className="card-body">
         <p className="card-value">{value}</p>
-        {/* Ejemplo simple de cómo mostrar un cambio (positivo/negativo) */}
-        <span className={`card-change ${change > 0 ? "positive" : "negative"}`}>
-          {change > 0 ? "↑" : "↓"} {Math.abs(change)}%
+
+        <span className={`card-change ${changeClass}`}>
+          {arrow} {change}
         </span>
       </div>
     </div>
