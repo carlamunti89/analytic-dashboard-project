@@ -3,16 +3,19 @@ import Card from "./components/Card";
 import LineChartCard from "./components/LineChartCard";
 import BarChartCard from "./components/BarChartCard";
 import DataTable from "./components/DataTable";
+import Spinner from "./components/Spinner";
 import dashboardData from "./data/dashboardData.json";
 
 function App() {
   const [metrics, setMetrics] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
-    setTimeout(() => {
+    // Simulación de carga de datos: 2 segundos de retraso
+    const timer = setTimeout(() => {
       setMetrics(dashboardData.keyMetrics);
-      setIsLoading(false);
-    }, 500);
+      setIsLoading(false); // <-- Cambiar a false después del retraso
+    }, 2000); // 2000 milisegundos = 2 segundos
+    return () => clearTimeout(timer); // Limpiar el timer si el componente se desmonta
   }, []);
 
   const formatValue = (value, unit) => {
@@ -62,7 +65,7 @@ function App() {
       <main className="main-content">
         <h1>Dashboard de Analíticas</h1>
         {isLoading ? (
-          <p>Cargando métricas...</p>
+          <Spinner />
         ) : (
           <>
             <div className="card-grid">
