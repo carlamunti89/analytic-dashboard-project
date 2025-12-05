@@ -21,3 +21,34 @@
     grid-template-rows: 1fr;
   }
 }
+
+// ----------------------------------------------------------------
+// ESTILOS PARA EL CONTENIDO PRINCIPAL (MAIN)
+// ----------------------------------------------------------------
+
+.main-content {
+  // 1. Asignación de área de Grid
+  grid-area: main;
+
+  // 2. Padding: Espacio de respiro alrededor del contenido (20px)
+  padding: 20px;
+
+  // 3. Scroll: Esto es crucial. Permitimos que el contenido principal
+  // se desplace verticalmente si es demasiado largo, ya que el contenedor
+  // principal (.dashboard-container) tiene 'overflow: hidden'.
+  overflow-y: auto;
+
+  // 4. Estilos para el título principal
+  h1 {
+    margin-bottom: 25px;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: $color-text-dark;
+  }
+
+  // 5. Ajustes para móviles: Más espacio arriba y abajo en pantallas pequeñas
+  @media (max-width: ($breakpoint-desktop - 1px)) {
+    padding-top: 50px;
+    padding-bottom: 50px;
+  }
+}

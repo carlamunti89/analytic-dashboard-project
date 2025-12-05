@@ -76,15 +76,14 @@ function App() {
               ))}
             </div>
             {/* INICIO DE LOS GRÁFICOS */}
-            <div className="charts-container">
-              <LineChartCard
-                title="Rendimiento de Ventas Mensuales"
-                data={dashboardData.charts[0].data} // Datos de tu JSON
-                dataKey="month" // Clave para el Eje X
-                lineDataKey="ventas" // Clave para la Línea Y
-                unit="$" // Unidad para el Eje Y y Tooltip
-              />
-            </div>
+
+            <LineChartCard
+              title="Rendimiento de Ventas Mensuales"
+              data={dashboardData.charts[0].data} // Datos de tu JSON
+              dataKey="month" // Clave para el Eje X
+              lineDataKey="ventas" // Clave para la Línea Y
+              unit="$" // Unidad para el Eje Y y Tooltip
+            />
           </>
         )}
       </main>
