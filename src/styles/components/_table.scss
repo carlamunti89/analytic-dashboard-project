@@ -1,0 +1,81 @@
+.data-table-card {
+  // Hereda los estilos de tarjeta (fondo blanco, sombra)
+  @extend .card;
+  padding: 25px;
+  margin-top: 30px;
+  grid-column: 1 / -1; /* Ocupa todo el ancho en el grid */
+}
+
+.table-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: $color-text-dark;
+  margin-bottom: 20px;
+}
+
+.table-container {
+  overflow-x: auto; /* Permite scroll horizontal en móviles si la tabla es ancha */
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse; /* Elimina doble borde */
+  font-size: 0.9rem;
+}
+
+th,
+td {
+  padding: 12px 15px;
+  text-align: left;
+}
+
+thead {
+  th {
+    font-weight: 700;
+    color: $color-text-dark;
+    border-bottom: 2px solid $color-border;
+    background-color: $color-bg-light;
+  }
+}
+
+tbody {
+  tr:nth-child(even) {
+    /* Color de fondo alterno para mejor lectura */
+    background-color: $color-bg-light;
+  }
+  tr:hover {
+    background-color: lighten($color-primary, 40%);
+    cursor: default;
+  }
+  td {
+    border-bottom: 1px solid $color-border;
+    color: $color-text-medium;
+  }
+}
+
+/* ---------------------------------------------------------------- */
+/* ESTILOS DE BADGE DE ESTADO */
+/* ---------------------------------------------------------------- */
+
+.status-badge {
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 0.8rem;
+  white-space: nowrap; /* Evita que el texto se rompa */
+}
+
+.status-completed {
+  background-color: lighten($color-success, 30%);
+  color: $color-success;
+}
+
+.status-pending {
+  background-color: lighten($color-warning, 30%);
+  color: $color-warning;
+}
+
+.status-canceled {
+  background-color: lighten($color-danger, 20%);
+  color: $color-danger;
+}

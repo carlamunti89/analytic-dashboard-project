@@ -2,10 +2,16 @@
 $color-primary: #5a58fe;
 $color-secondary: #00c49f;
 
+// Colores de Estado (Para Badges y Mensajes)
+$color-success: #28a745; // Verde para éxito (Completed)
+$color-warning: #ffc107; // Amarillo para advertencia (Pending)
+$color-danger: #dc3545; // Rojo para peligro/error (Canceled)
+
 // Colores de fondo y texto
 $color-bg-light: #f8f9fa;
 $color-bg-dark: #ffffff;
 $color-text-dark: #212529;
+$color-text-medium: #495057;
 $color-text-light: #6c757d;
 $color-border: #e9ecef;
 

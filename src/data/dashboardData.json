@@ -54,5 +54,42 @@
         { "category": "Referido", "users": 589 }
       ]
     }
+  ],
+  "recentTransactions": [
+    {
+      "id": 1,
+      "date": "2025-12-04",
+      "user": "Alice Johnson",
+      "amount": 299.99,
+      "status": "Completed"
+    },
+    {
+      "id": 2,
+      "date": "2025-12-04",
+      "user": "Bob Smith",
+      "amount": 49.99,
+      "status": "Pending"
+    },
+    {
+      "id": 3,
+      "date": "2025-12-03",
+      "user": "Charlie Brown",
+      "amount": 1250.5,
+      "status": "Completed"
+    },
+    {
+      "id": 4,
+      "date": "2025-12-02",
+      "user": "Diana Prince",
+      "amount": 78.0,
+      "status": "Canceled"
+    },
+    {
+      "id": 5,
+      "date": "2025-12-02",
+      "user": "Clark Kent",
+      "amount": 500.0,
+      "status": "Completed"
+    }
   ]
 }

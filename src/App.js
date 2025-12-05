@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Card from "./components/Card";
 import LineChartCard from "./components/LineChartCard";
 import BarChartCard from "./components/BarChartCard";
+import DataTable from "./components/DataTable";
 import dashboardData from "./data/dashboardData.json";
 
 function App() {
@@ -93,6 +94,12 @@ function App() {
                 barDataKey="users" // Barras: Valor de Usuarios
               />
             </div>
+            {/* INICIO DE LA TABLA DE DATOS */}
+            <DataTable
+              title="Transacciones Recientes"
+              data={dashboardData.recentTransactions} // <-- Usamos los nuevos datos del JSON
+            />
+            {/* FIN DE LA TABLA DE DATOS */}
           </>
         )}
       </main>
