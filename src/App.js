@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Card from "./components/Card";
 import LineChartCard from "./components/LineChartCard";
+import BarChartCard from "./components/BarChartCard";
 import dashboardData from "./data/dashboardData.json";
 
 function App() {
@@ -76,14 +77,22 @@ function App() {
               ))}
             </div>
             {/* INICIO DE LOS GRÁFICOS */}
-
-            <LineChartCard
-              title="Rendimiento de Ventas Mensuales"
-              data={dashboardData.charts[0].data} // Datos de tu JSON
-              dataKey="month" // Clave para el Eje X
-              lineDataKey="ventas" // Clave para la Línea Y
-              unit="$" // Unidad para el Eje Y y Tooltip
-            />
+            <div className="charts-row">
+              <LineChartCard
+                title="Rendimiento de Ventas Mensuales"
+                data={dashboardData.charts[0].data} // Datos de tu JSON
+                dataKey="month" // Clave para el Eje X
+                lineDataKey="ventas" // Clave para la Línea Y
+                unit="$" // Unidad para el Eje Y y Tooltip
+              />
+              {/* Gráfico de Barras (Chart 2) */}
+              <BarChartCard
+                title="Tráfico por Fuente de Usuario"
+                data={dashboardData.charts[1].data}
+                dataKey="category" // Eje X: Email, Social, etc.
+                barDataKey="users" // Barras: Valor de Usuarios
+              />
+            </div>
           </>
         )}
       </main>

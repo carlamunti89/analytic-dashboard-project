@@ -44,6 +44,15 @@
         { "month": "Ene", "ventas": 10000 },
         { "month": "Feb", "ventas": 12000 }
       ]
+    },
+    {
+      "type": "BarChart",
+      "data": [
+        { "category": "Email", "users": 1500 },
+        { "category": "Social", "users": 1200 },
+        { "category": "Directo", "users": 700 },
+        { "category": "Referido", "users": 589 }
+      ]
     }
   ]
 }
