@@ -22,3 +22,7 @@ $font-size-base: 16px;
 // Media Queries Breakpoints
 $breakpoint-tablet: 768px;
 $breakpoint-desktop: 1024px;
+
+// Variables de Layout
+$sidebar-width: 250px; // O el valor que uses para el ancho del sidebar
+$breakpoint-desktop: 1024px; // Punto de quiebre para el diseño Grid

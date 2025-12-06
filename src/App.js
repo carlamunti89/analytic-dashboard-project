@@ -9,6 +9,7 @@ import dashboardData from "./data/dashboardData.json";
 function App() {
   const [metrics, setMetrics] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   useEffect(() => {
     // Simulación de carga de datos: 2 segundos de retraso
     const timer = setTimeout(() => {
@@ -17,6 +18,10 @@ function App() {
     }, 2000); // 2000 milisegundos = 2 segundos
     return () => clearTimeout(timer); // Limpiar el timer si el componente se desmonta
   }, []);
+
+  const toggleSidebar = () => {
+    setIsSidebarOpen(!isSidebarOpen);
+  };
 
   const formatValue = (value, unit) => {
     const options = {
@@ -47,9 +52,11 @@ function App() {
   };
 
   return (
-    <div className="dashboard-container">
+    <div
+      className={`dashboard-container ${isSidebarOpen ? "sidebar-open" : ""}`}
+    >
       {/* 1. Área del Sidebar */}
-      <aside className="sidebar">
+      <aside className="sidebar" onClick={toggleSidebar}>
         <h2>Panel de Control</h2>
         <nav>
           <ul>
@@ -62,7 +69,30 @@ function App() {
       </aside>
 
       {/* 2. Área del Contenido Principal */}
-      <main className="main-content">
+      <main
+        className="main-content"
+        onClick={isSidebarOpen ? toggleSidebar : undefined}
+      >
+        {/* Botón para Abrir/Cerrar el Sidebar (visible solo en móvil) */}
+        <button className="sidebar-toggle-btn" onClick={toggleSidebar}>
+          {/* Usamos un ícono SVG o texto para el botón */}
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+        </button>
+
         <h1>Dashboard de Analíticas</h1>
         {isLoading ? (
           <Spinner />

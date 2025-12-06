@@ -8,6 +8,7 @@
   grid-template-rows: auto 1fr;
   height: 100vh;
   overflow: hidden;
+  position: relative;
 }
 
 // ----------------------------------------------------------------
@@ -52,3 +53,69 @@
     padding-bottom: 50px;
   }
 }
+
+/* ---------------------------------------------------------------- */
+/* RESPONSIVIDAD DEL SIDEBAR (MÓVIL) */
+/* ---------------------------------------------------------------- */
+
+@media (max-width: $breakpoint-desktop - 1px) {
+  .dashboard-container {
+    // En móvil, el contenedor usa 1 columna completa
+    grid-template-columns: 1fr;
+    grid-template-areas: "main";
+  }
+
+  .sidebar {
+    // El sidebar se convierte en un panel de overlay
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: $sidebar-width; // Ancho fijo
+    height: 100%;
+    z-index: 100; // Siempre encima
+    transform: translateX(-100%); // Oculto por defecto
+    transition: transform 0.3s ease-in-out;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); // Sombra cuando está abierto
+  }
+
+  // Estado cuando el botón de toggle está activado
+  .dashboard-container.sidebar-open .sidebar {
+    transform: translateX(0); // Muestra el sidebar
+  }
+}
+/* ---------------------------------------------------------------- */
+/* ESTILOS DEL BOTÓN DE TOGGLE */
+/* ---------------------------------------------------------------- */
+
+.sidebar-toggle-btn {
+  display: none; // Oculto por defecto en desktop
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 101; // Encima de todo, incluido el sidebar
+
+  // Estilos de botón simples
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 5px;
+  color: $color-text-dark;
+
+  svg {
+    width: 28px;
+    height: 28px;
+  }
+}
+
+// Hacemos el botón visible solo en pantallas pequeñas
+@media (max-width: $breakpoint-desktop - 1px) {
+  .sidebar-toggle-btn {
+    display: block; // Muestra el botón en móvil
+  }
+}
+
+// Cuando el sidebar está abierto en móvil, puedes darle un estilo diferente al botón si lo necesitas
+// .dashboard-container.sidebar-open .sidebar-toggle-btn {
+//     // Por ejemplo, cambiar a una 'X' o cambiar el color
+// }
