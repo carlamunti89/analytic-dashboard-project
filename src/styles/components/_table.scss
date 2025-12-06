@@ -9,7 +9,7 @@
 .table-title {
   font-size: 1.25rem;
   font-weight: 600;
-  color: $color-text-dark;
+  color: $color-text-lightest;
   margin-bottom: 20px;
 }
 
@@ -32,7 +32,7 @@ td {
 thead {
   th {
     font-weight: 700;
-    color: $color-text-dark;
+    color: $color-text-medium;
     border-bottom: 2px solid $color-border;
     background-color: $color-bg-light;
   }
