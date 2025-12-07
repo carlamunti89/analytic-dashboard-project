@@ -82,3 +82,64 @@ tbody {
   background-color: lighten($color-danger, 20%);
   color: $color-danger;
 }
+
+/* ---------------------------------------------------------------- */
+/* CONTROLES DE TABLA (BÚSQUEDA Y PAGINACIÓN) */
+/* ---------------------------------------------------------------- */
+
+.table-controls {
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: flex-end; // Empuja el input a la derecha
+}
+
+.table-search-input {
+  padding: 10px 15px;
+  border: 1px solid $color-border;
+  border-radius: $border-radius-base;
+  width: 100%;
+  max-width: 300px; // Limita el ancho del campo de búsqueda
+  font-size: 0.9rem;
+  color: $color-text-darkest;
+  transition: border-color 0.3s;
+
+  &:focus {
+    outline: none;
+    border-color: $color-primary;
+  }
+}
+
+.pagination-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+  padding-top: 15px;
+  border-top: 1px solid $color-border;
+
+  button {
+    padding: 8px 15px;
+    background-color: $color-primary;
+    color: #fff;
+    border: none;
+    border-radius: $border-radius-base;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-weight: 600;
+
+    &:hover:not(:disabled) {
+      background-color: darken($color-primary, 10%);
+    }
+
+    &:disabled {
+      background-color: $color-text-medium;
+      cursor: not-allowed;
+      opacity: 0.6;
+    }
+  }
+
+  span {
+    font-size: 0.9rem;
+    color: $color-text-darkest;
+  }
+}
