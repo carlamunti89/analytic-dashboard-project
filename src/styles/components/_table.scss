@@ -43,16 +43,18 @@ tbody {
     /* Color de fondo alterno para mejor lectura */
     background-color: $color-bg-light;
   }
+
+  tr:nth-child(odd) {
+    background-color: $color-bg-medium;
+  }
   tr:hover {
-    background-color: lighten($color-primary, 40%);
+    // ESTO ESTABA MAL: fondo demasiado claro o no claro
+    background-color: lighten($color-bg-light, 15%);
     cursor: default;
     td {
-      color: $color-text-darkest; /* O usa un valor hexadecimal fijo como #333 */
+      // ESTO TAMBIÉN ESTABA MAL: texto muy oscuro (#333) sobre fondo semi-claro
+      color: $color-text-lightest;
     }
-  }
-  td {
-    border-bottom: 1px solid $color-border;
-    color: $color-text-medium;
   }
 }
 
@@ -94,14 +96,19 @@ tbody {
 }
 
 .table-search-input {
+  background-color: $color-bg-deep;
+  color: $color-text-lightest;
   padding: 10px 15px;
   border: 1px solid $color-border;
   border-radius: $border-radius-base;
   width: 100%;
   max-width: 300px; // Limita el ancho del campo de búsqueda
   font-size: 0.9rem;
-  color: $color-text-darkest;
   transition: border-color 0.3s;
+
+  &::placeholder {
+    color: $color-text-darkest;
+  }
 
   &:focus {
     outline: none;

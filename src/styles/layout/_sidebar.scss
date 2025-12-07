@@ -24,11 +24,11 @@
     cursor: pointer;
     border-radius: 4px;
     font-weight: 500;
-    transition: background-color 0.2s;
+    transition: color 0.2s;
+    color: $color-text-medium;
 
     &:hover {
-      background-color: lighten($color-primary, 40%);
-      color: darken($color-primary, 10%);
+      color: $color-primary;
     }
   }
 }

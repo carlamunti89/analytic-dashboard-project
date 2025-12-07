@@ -19,7 +19,7 @@ const LineChartCard = ({ title, data, dataKey, lineDataKey, unit }) => {
         {/* 2. Componente Principal del Gráfico de Líneas */}
         <LineChart
           data={data}
-          margin={{ top: 5, right: 20, left: 10, bottom: 5 }}
+          margin={{ top: 10, right: 20, left: 10, bottom: 5 }}
         >
           {/* 3. Rejilla: Dibuja líneas horizontales y verticales dentro del gráfico */}
           <CartesianGrid strokeDasharray="3 3" stroke="#e9ecef" />

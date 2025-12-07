@@ -21,9 +21,9 @@
 // 2. Estilos del Componente Card
 .card {
   background-color: $color-bg-medium; // Fondo blanco puro
-  border-radius: 8px;
+  border-radius: $border-radius-base;
   padding: 20px;
-  box-shadow: 0 4px px rgba(0, 0, 0, 0.5); // Sombra más oscura
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
 }
 
 .card-header {
@@ -63,7 +63,7 @@
 }
 
 .negative {
-  color: #dc3545; // Rojo para negativo (o definir una variable en _variables.scss)
+  color: $color-danger; // Rojo para negativo (o definir una variable en _variables.scss)
 }
 
 // -------------------------------------------------------------
