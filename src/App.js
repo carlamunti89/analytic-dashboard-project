@@ -5,6 +5,7 @@ import BarChartCard from "./components/BarChartCard";
 import DataTable from "./components/DataTable";
 import Spinner from "./components/Spinner";
 import dashboardData from "./data/dashboardData.json";
+import Sidebar from "./components/Sidebar";
 
 function App() {
   const [metrics, setMetrics] = useState([]);
@@ -55,18 +56,10 @@ function App() {
     <div
       className={`dashboard-container ${isSidebarOpen ? "sidebar-open" : ""}`}
     >
-      {/* 1. Área del Sidebar */}
-      <aside className="sidebar" onClick={toggleSidebar}>
-        <h2>Panel de Control</h2>
-        <nav>
-          <ul>
-            <li>Visión General</li>
-            <li>Reportes de Ventas</li>
-            <li>Gestión de Usuarios</li>
-            <li>Configuración</li>
-          </ul>
-        </nav>
-      </aside>
+      <Sidebar
+        isOpen={isSidebarOpen} // Pasamos el estado de apertura
+        toggleSidebar={toggleSidebar} // Pasamos la función para cerrarlo/abrirlo
+      />
 
       {/* 2. Área del Contenido Principal */}
       <main
