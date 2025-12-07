@@ -38,6 +38,10 @@ const BarChartCard = ({ title, data, dataKey, barDataKey }) => {
               border: "1px solid #ccc",
               padding: "5px",
             }}
+            labelStyle={{
+              color: "#00C49F", // <-- Asegura que la etiqueta sea oscura
+              fontWeight: "bold",
+            }}
           />
           {/* La Barra del Gráfico */}
           <Bar

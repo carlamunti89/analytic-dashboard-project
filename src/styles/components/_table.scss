@@ -46,6 +46,9 @@ tbody {
   tr:hover {
     background-color: lighten($color-primary, 40%);
     cursor: default;
+    td {
+      color: $color-text-darkest; /* O usa un valor hexadecimal fijo como #333 */
+    }
   }
   td {
     border-bottom: 1px solid $color-border;

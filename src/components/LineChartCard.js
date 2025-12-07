@@ -47,6 +47,10 @@ const LineChartCard = ({ title, data, dataKey, lineDataKey, unit }) => {
               border: "1px solid #ccc",
               padding: "5px",
             }}
+            labelStyle={{
+              color: "#5A58FE", // <-- Asegura que la etiqueta sea oscura
+              fontWeight: "bold",
+            }}
           />
 
           {/* 7. La Línea del Gráfico: Define qué datos dibujar */}
