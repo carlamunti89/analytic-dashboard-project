@@ -9,6 +9,7 @@
   height: 100vh;
   overflow: hidden;
   position: relative;
+  background-color: $color-bg-deep;
 }
 
 // ----------------------------------------------------------------
@@ -38,13 +39,14 @@
   // se desplace verticalmente si es demasiado largo, ya que el contenedor
   // principal (.dashboard-container) tiene 'overflow: hidden'.
   overflow-y: auto;
+  color: $color-text-medium;
 
   // 4. Estilos para el título principal
   h1 {
     margin-bottom: 25px;
     font-size: 1.8rem;
     font-weight: 700;
-    color: $color-text-dark;
+    color: $color-text-lightest;
   }
 
   // 5. Ajustes para móviles: Más espacio arriba y abajo en pantallas pequeñas
@@ -77,6 +79,7 @@
     transform: translateX(-100%); // Oculto por defecto
     transition: transform 0.3s ease-in-out;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); // Sombra cuando está abierto
+    background-color: $color-bg-medium;
   }
 
   // Estado cuando el botón de toggle está activado
@@ -100,7 +103,7 @@
   border: none;
   cursor: pointer;
   padding: 5px;
-  color: $color-text-dark;
+  color: $color-text-medium;
 
   svg {
     width: 28px;

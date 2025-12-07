@@ -1,19 +1,37 @@
-// Colores primarios del Dashboard
-$color-primary: #5a58fe;
-$color-secondary: #00c49f;
+// src/styles/abstracts/_variables.scss
 
-// Colores de Estado (Para Badges y Mensajes)
-$color-success: #28a745; // Verde para éxito (Completed)
-$color-warning: #ffc107; // Amarillo para advertencia (Pending)
-$color-danger: #dc3545; // Rojo para peligro/error (Canceled)
+// ===================================
+// COLORES PARA TEMA OSCURO
+// ===================================
 
-// Colores de fondo y texto
-$color-bg-light: #f8f9fa;
-$color-bg-dark: #ffffff;
-$color-text-dark: #212529;
-$color-text-medium: #495057;
-$color-text-light: #6c757d;
-$color-border: #e9ecef;
+// COLORES PRIMARIOS (Mantener los colores vibrantes para que resalten)
+$color-primary: #5a58fe; // Azul/Violeta de acento
+$color-secondary: #00c49f; // Turquesa/Verde de acento
+
+// COLORES DE ESTADO (Ligeramente ajustados para mejor contraste sobre fondo oscuro)
+$color-success: #2ecc71; // Verde para éxito
+$color-warning: #f1c40f; // Amarillo para advertencia
+$color-danger: #e74c3c; // Rojo para peligro/error
+
+// COLORES DE FONDO Y TEXTO (Estructura Invertida para Dark Mode)
+
+// 1. Fondos
+$color-bg-deep: #121212; // Fondo más oscuro (Background principal de la aplicación)
+$color-bg-medium: #1f1f1f; // Fondo de Tarjetas y Sidebar (Ligeramente más claro)
+$color-bg-light: #2c2c2c; // Fondo de Hover o elementos de entrada
+$color-white: #ffffff; // Usado en componentes donde se necesita blanco puro (e.g., texto principal)
+
+// 2. Texto
+$color-text-lightest: $color-white; // Texto más claro (Título, Valores principales)
+$color-text-medium: #e0e0e0; // Texto secundario, descripciones
+$color-text-darkest: #8c8c8c; // Texto sutil, etiquetas, muted
+
+// 3. Bordes
+$color-border: #333333; // Líneas divisorias, bordes sutiles
+
+// ===================================
+// TIPOGRAFÍA Y LAYOUT (Sin Cambios)
+// ===================================
 
 // Tipografía
 $font-stack: "Arial", sans-serif;
@@ -24,5 +42,4 @@ $breakpoint-tablet: 768px;
 $breakpoint-desktop: 1024px;
 
 // Variables de Layout
-$sidebar-width: 250px; // O el valor que uses para el ancho del sidebar
-$breakpoint-desktop: 1024px; // Punto de quiebre para el diseño Grid
+$sidebar-width: 250px;
