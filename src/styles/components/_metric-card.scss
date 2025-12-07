@@ -1,0 +1,57 @@
+/* ---------------------------------------------------------------- */
+/* ESTILOS DE MÉTRICA */
+/* ---------------------------------------------------------------- */
+
+.metric-card {
+  // Aplicamos el radio de borde definido globalmente
+  border-radius: $border-radius-base;
+
+  // El fondo de la tarjeta es el color medio
+  background-color: $color-bg-medium;
+
+  // Estilos de Flexbox
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 100px;
+  padding: 1rem; // Añadimos padding para que se vea mejor
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); // Sombra sutil
+}
+
+.metric-title {
+  font-size: 1rem;
+  color: $color-text-medium; // Texto secundario
+  margin-bottom: 5px;
+}
+
+.metric-value {
+  font-size: 2.2rem;
+  font-weight: 700;
+  // CORRECCIÓN CLAVE: Usamos el texto más claro (blanco) para el valor principal
+  color: $color-text-lightest;
+  margin-bottom: 10px;
+}
+
+.metric-change {
+  display: flex;
+  align-items: center;
+  font-size: 0.9rem;
+  font-weight: 600;
+
+  .arrow {
+    margin-right: 3px;
+  }
+}
+
+// Estilos condicionales que MetricCard.js asigna (basados en $color-success y $color-danger)
+.change-positive {
+  color: $color-success; // Verde
+}
+
+.change-negative {
+  color: $color-danger; // Rojo
+}
+
+.change-neutral {
+  color: $color-text-darkest; // Texto sutil para cambios de 0%
+}
