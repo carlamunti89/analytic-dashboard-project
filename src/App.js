@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
-import Card from "./components/Card";
 import LineChartCard from "./components/LineChartCard";
 import BarChartCard from "./components/BarChartCard";
 import DataTable from "./components/DataTable";
 import Spinner from "./components/Spinner";
 import dashboardData from "./data/dashboardData.json";
 import Sidebar from "./components/Sidebar";
+import MetricCard from "./components/MetricCard"; //
 
 function App() {
   const [metrics, setMetrics] = useState([]);
@@ -24,32 +24,24 @@ function App() {
     setIsSidebarOpen(!isSidebarOpen);
   };
 
+  // src/App.js (Actualizar esta función)
+
   const formatValue = (value, unit) => {
+    // Usamos el formato para miles y decimales, manteniendo la unidad fuera del formato de número.
     const options = {
       useGrouping: true,
       minimumFractionDigits: 0,
       maximumFractionDigits: 0,
     };
+
+    // Si el valor es muy grande, quizás quieras usar la lógica de "k" o "M" que tenías antes
+    // Aquí usamos la versión que solo formatea números y añade la unidad.
     const formattedValue = value.toLocaleString("es-ES", options);
+
     if (unit === "$") {
       return unit + formattedValue;
     }
     return formattedValue + unit;
-  };
-
-  const formatChange = (change, change_unit) => {
-    if (change === undefined || change === null) return "";
-
-    const sign = change > 0 ? "+" : "";
-
-    const options = {
-      minimumFractionDigits: 1,
-      maximumFractionDigits: 1,
-    };
-
-    const formattedChange = Math.abs(change).toLocaleString("es-ES", options);
-
-    return `${sign}${formattedChange}${change_unit}`;
   };
 
   return (
@@ -93,13 +85,14 @@ function App() {
           <>
             <div className="card-grid">
               {metrics.map((metric) => (
-                <Card
-                  key={metric.id}
+                <MetricCard // <-- USAMOS EL NUEVO COMPONENTE
+                  key={metric.title} // Usamos title como key (mejor que id en este caso)
                   title={metric.title}
-                  value={formatValue(metric.value, metric.unit)}
-                  icon={metric.icon}
-                  change={formatChange(metric.change, metric.change_unit)}
-                  changeValue={metric.change}
+                  value={metric.value} // <-- Pasamos el VALOR SIN FORMATO
+                  unit={metric.unit} // <-- Pasamos la UNIDAD
+                  change={metric.change} // <-- Pasamos el CAMBIO SIN FORMATO (0.05, -0.01)
+                  changeUnit={metric.change_unit} // <-- Pasamos la UNIDAD DE CAMBIO (%)
+                  formatValue={formatValue} // <-- Pasamos la función de utilidad formatValue
                 />
               ))}
             </div>
