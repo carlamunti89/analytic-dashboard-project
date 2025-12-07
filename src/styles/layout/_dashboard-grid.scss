@@ -58,7 +58,7 @@
 /* RESPONSIVIDAD DEL SIDEBAR (MÓVIL) */
 /* ---------------------------------------------------------------- */
 
-@media (max-width: $breakpoint-desktop - 1px) {
+@media (max-width: ($breakpoint-desktop - 1px)) {
   .dashboard-container {
     // En móvil, el contenedor usa 1 columna completa
     grid-template-columns: 1fr;
@@ -109,7 +109,7 @@
 }
 
 // Hacemos el botón visible solo en pantallas pequeñas
-@media (max-width: $breakpoint-desktop - 1px) {
+@media (max-width: ($breakpoint-desktop - 1px)) {
   .sidebar-toggle-btn {
     display: block; // Muestra el botón en móvil
   }
