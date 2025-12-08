@@ -8,8 +8,14 @@ import {
   Tooltip,
   ResponsiveContainer,
 } from "recharts";
+import { formatCurrency, formatMetricValue } from "../utils/formatters";
 
 const LineChartCard = ({ title, data, dataKey, lineDataKey, unit }) => {
+  const chartFormatter = (value) => {
+    return unit === "$" || unit === "€"
+      ? formatCurrency(value)
+      : formatMetricValue(value, unit);
+  };
   return (
     <div className="chart-card">
       <h2 className="chart-title">{title}</h2>
@@ -30,9 +36,7 @@ const LineChartCard = ({ title, data, dataKey, lineDataKey, unit }) => {
           {/* 5. Eje Y (vertical): Muestra los valores de la escala */}
           <YAxis
             // Formato de los números en el eje Y (ej., 10000 -> 10.000)
-            tickFormatter={(value) =>
-              value.toLocaleString("es-ES") + (unit || "")
-            }
+            tickFormatter={chartFormatter}
             // Ancho del espacio para las etiquetas del eje Y
             width={80}
           />
@@ -40,7 +44,7 @@ const LineChartCard = ({ title, data, dataKey, lineDataKey, unit }) => {
           {/* 6. Tooltip: La caja emergente que aparece al pasar el ratón */}
           <Tooltip
             // Formato del valor dentro del Tooltip
-            formatter={(value) => value.toLocaleString("es-ES") + (unit || "")}
+            formatter={chartFormatter}
             // Estilo básico del Tooltip
             contentStyle={{
               backgroundColor: "#fff",

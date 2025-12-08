@@ -1,55 +1,63 @@
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
+// Asegúrate de que la ruta sea correcta
+import { formatCurrency } from "../utils/formatters";
 
 const ROWS_PER_PAGE = 3;
 
 const DataTable = ({ title, data }) => {
-  // 1. ESTADOS PARA CONTROL
+  // 1. ESTADOS PARA CONTROL (useState)
   const [searchTerm, setSearchTerm] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
 
-  if (!data || data.length === 0) {
+  // 2. LÓGICA DE BÚSQUEDA (FILTRADO) - useMemo (LLAMADA INCONDICIONAL 1)
+  const filteredData = useMemo(() => {
+    // Si no hay datos, retorna un array vacío. Esto asegura que el Hook siempre se llama.
+    if (!data || data.length === 0) return [];
+
+    const term = searchTerm.toLowerCase();
+
+    // Lógica de filtrado
+    if (term === "") {
+      return data;
+    }
+    return data.filter((row) => {
+      // Nota: Asumimos que Object.values(row) es seguro aquí.
+      return Object.values(row).some((value) => {
+        return String(value).toLowerCase().includes(term);
+      });
+    });
+  }, [data, searchTerm]);
+
+  // 3. CÁLCULO DE PAGINACIÓN Y currentData (LLAMADA INCONDICIONAL 2)
+
+  // Calcula el número total de páginas (si filteredData está vacío, totalPages será 0)
+  const totalPages = Math.ceil(filteredData.length / ROWS_PER_PAGE);
+
+  const currentData = useMemo(() => {
+    // Si filteredData está vacío (por búsqueda o datos iniciales), retorna [].
+    if (filteredData.length === 0) return [];
+
+    // Resetear currentPage si el usuario está en una página que ya no existe después del filtro
+    const page = Math.min(currentPage, totalPages > 0 ? totalPages : 1);
+
+    const startIndex = (page - 1) * ROWS_PER_PAGE;
+    const endIndex = startIndex + ROWS_PER_PAGE;
+
+    return filteredData.slice(startIndex, endIndex);
+  }, [filteredData, currentPage, totalPages]); // Añadimos totalPages por seguridad
+
+  // 4. DEFINICIÓN DE COLUMNAS
+  // Esto NO es un Hook, pero debe ejecutarse ANTES del return, si data[0] existe.
+  // Movemos la lógica para manejar el caso de 'data' vacío.
+  const columns = data && data.length > 0 ? Object.keys(data[0]) : [];
+
+  // 5. RETORNO TEMPRANO VERIFICANDO DATOS
+  // Esto es seguro porque TODOS los Hooks (useState y useMemo) ya se llamaron.
+  if (filteredData.length === 0) {
     return <p>No hay datos disponibles.</p>;
   }
 
-  const columns = Object.keys(data[0]);
-
-  const formatCurrency = (value) => {
-    return "$" + value.toFixed(2).toLocaleString("es-ES");
-  };
-
-  // 2. LÓGICA DE BÚSQUEDA (FILTRADO)
-  // src/components/DataTable.js (Sustituir las líneas de LÓGICA DE BÚSQUEDA)
-
-  // 2. LÓGICA DE BÚSQUEDA (FILTRADO)
-  const filteredData = data.filter((row) => {
-    const term = searchTerm.toLowerCase();
-
-    // Si el término de búsqueda está vacío, mostramos todos los datos
-    if (term === "") {
-      return true;
-    }
-
-    // Itera sobre los valores de la fila (user, amount, date, status, id)
-    // y devuelve true si AL MENOS UNO incluye el término.
-    return Object.values(row).some((value) => {
-      // 1. Convierte el valor a cadena (incluso si es un número o fecha)
-      // 2. Convierte a minúsculas
-      // 3. Verifica si incluye el término buscado
-      return String(value).toLowerCase().includes(term);
-    });
-  });
-
-  // 3. LÓGICA DE PAGINACIÓN
-  const totalPages = Math.ceil(filteredData.length / ROWS_PER_PAGE);
-
-  // Calcula los índices de inicio y fin para el corte de datos
-  const startIndex = (currentPage - 1) * ROWS_PER_PAGE;
-  const endIndex = startIndex + ROWS_PER_PAGE;
-
-  // Datos que se mostrarán en la página actual
-  const currentData = filteredData.slice(startIndex, endIndex);
-
-  // Funciones para cambiar de página
+  // 6. FUNCIONES DE MANEJO
   const goToPreviousPage = () => {
     setCurrentPage((prev) => Math.max(prev - 1, 1));
   };
@@ -62,7 +70,7 @@ const DataTable = ({ title, data }) => {
     <div className="data-table-card">
       <h2 className="table-title">{title}</h2>
 
-      {/* 4. CAMPO DE BÚSQUEDA */}
+      {/* 7. CAMPO DE BÚSQUEDA */}
       <div className="table-controls">
         <input
           type="text"
@@ -78,7 +86,7 @@ const DataTable = ({ title, data }) => {
 
       <div className="table-container">
         <table>
-          {/* ENCABEZADOS DE LA TABLA (THEAD) - Sin cambios */}
+          {/* ENCABEZADOS DE LA TABLA (THEAD) */}
           <thead>
             <tr>
               {columns.map((key) => (
@@ -92,8 +100,8 @@ const DataTable = ({ title, data }) => {
 
           {/* CUERPO DE LA TABLA (TBODY) - Usa currentData */}
           <tbody>
-            {currentData.map((row) => (
-              <tr key={row.id}>
+            {currentData.map((row, index) => (
+              <tr key={row.id || index}>
                 {columns.map((key) => (
                   <td key={key}>
                     {key === "amount" ? (
@@ -117,7 +125,7 @@ const DataTable = ({ title, data }) => {
         </table>
       </div>
 
-      {/* 5. CONTROLES DE PAGINACIÓN */}
+      {/* 8. CONTROLES DE PAGINACIÓN */}
       {filteredData.length > ROWS_PER_PAGE && (
         <div className="pagination-controls">
           <button onClick={goToPreviousPage} disabled={currentPage === 1}>

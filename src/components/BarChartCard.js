@@ -8,6 +8,7 @@ import {
   Tooltip,
   ResponsiveContainer,
 } from "recharts";
+import { formatCurrency } from "../utils/formatters";
 
 const BarChartCard = ({ title, data, dataKey, barDataKey }) => {
   return (
@@ -27,12 +28,9 @@ const BarChartCard = ({ title, data, dataKey, barDataKey }) => {
           {/* vertical={false} para líneas solo horizontales */}
           <XAxis dataKey={dataKey} />{" "}
           {/* Clave para el eje horizontal (ej. "category") */}
-          <YAxis
-            tickFormatter={(value) => value.toLocaleString("es-ES")}
-            width={60}
-          />
+          <YAxis tickFormatter={formatCurrency} width={80} />
           <Tooltip
-            formatter={(value) => value.toLocaleString("es-ES")}
+            formatter={formatCurrency}
             contentStyle={{
               backgroundColor: "#fff",
               border: "1px solid #ccc",

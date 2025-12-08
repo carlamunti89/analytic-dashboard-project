@@ -5,7 +5,8 @@ import DataTable from "./components/DataTable";
 import Spinner from "./components/Spinner";
 import dashboardData from "./data/dashboardData.json";
 import Sidebar from "./components/Sidebar";
-import MetricCard from "./components/MetricCard"; //
+import MetricCard from "./components/MetricCard";
+import { formatMetricValue } from "./utils/formatters";
 
 function App() {
   const [metrics, setMetrics] = useState([]);
@@ -22,26 +23,6 @@ function App() {
 
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
-  };
-
-  // src/App.js (Actualizar esta función)
-
-  const formatValue = (value, unit) => {
-    // Usamos el formato para miles y decimales, manteniendo la unidad fuera del formato de número.
-    const options = {
-      useGrouping: true,
-      minimumFractionDigits: 0,
-      maximumFractionDigits: 0,
-    };
-
-    // Si el valor es muy grande, quizás quieras usar la lógica de "k" o "M" que tenías antes
-    // Aquí usamos la versión que solo formatea números y añade la unidad.
-    const formattedValue = value.toLocaleString("es-ES", options);
-
-    if (unit === "$") {
-      return unit + formattedValue;
-    }
-    return formattedValue + unit;
   };
 
   return (
@@ -92,7 +73,7 @@ function App() {
                   unit={metric.unit} // <-- Pasamos la UNIDAD
                   change={metric.change} // <-- Pasamos el CAMBIO SIN FORMATO (0.05, -0.01)
                   changeUnit={metric.change_unit} // <-- Pasamos la UNIDAD DE CAMBIO (%)
-                  formatValue={formatValue} // <-- Pasamos la función de utilidad formatValue
+                  formatValue={formatMetricValue} // <-- Pasamos la función de utilidad formatValue
                 />
               ))}
             </div>
