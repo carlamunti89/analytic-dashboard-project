@@ -30,7 +30,10 @@ const MetricCard = ({
 
       {/* Solo mostramos el cambio si existe y no es cero */}
       {change !== 0 && formattedChangeText && (
-        <div className={`metric-change ${changeColorClass}`}>
+        <div
+          className={`metric-change ${changeColorClass}`}
+          data-testid="metric-change-status"
+        >
           <span className="arrow">{changeArrow}</span>
           <span className="percentage">{formattedChangeText}</span>
         </div>
