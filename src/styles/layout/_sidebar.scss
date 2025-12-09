@@ -29,6 +29,17 @@
 
     &:hover {
       color: $color-primary;
+      background-color: rgba($color-primary, 0.1);
+    }
+  }
+  nav li.active {
+    color: $color-text-lightest; // Texto más claro
+    background-color: $color-primary; // Fondo con el color de acento
+    font-weight: 700; // Más negrita
+
+    &:hover {
+      // Evitamos el cambio de color al pasar el ratón si ya está activo
+      background-color: $color-primary;
     }
   }
 }

@@ -13,7 +13,7 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
       <h2>Panel de Control</h2>
       <nav>
         <ul>
-          <li>Visión General</li>
+          <li className="active">Visión General</li>
           <li>Reportes de Ventas</li>
           <li>Gestión de Usuarios</li>
           <li>Configuración</li>

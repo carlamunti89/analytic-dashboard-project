@@ -30,13 +30,13 @@ describe("Formatters Utilities", () => {
 
   // Test 4: formatChange (El más importante)
   test("formatChange debe incluir el signo + para cambios positivos", () => {
-    // 0.05 (5%) debe ser '+5,0%'
-    expect(formatChange(0.05)).toBe("+5,0%");
+    // 5.0 (5%) debe ser '+5,0%'
+    expect(formatChange(5.0)).toBe("+5,0%");
   });
 
   test("formatChange debe incluir el signo - para cambios negativos", () => {
-    // -0.015 (-1.5%) debe ser '-1,5%'
-    expect(formatChange(-0.015)).toBe("-1,5%");
+    // -1.5 (-1.5%) debe ser '-1,5%'
+    expect(formatChange(-1.5)).toBe("-1,5%");
   });
 
   test("formatChange debe retornar vacío para cambio nulo", () => {

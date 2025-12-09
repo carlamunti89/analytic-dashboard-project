@@ -38,6 +38,7 @@ function App() {
       <main
         className="main-content"
         onClick={isSidebarOpen ? toggleSidebar : undefined}
+        aria-hidden={isSidebarOpen}
       >
         {/* Botón para Abrir/Cerrar el Sidebar (visible solo en móvil) */}
         <button className="sidebar-toggle-btn" onClick={toggleSidebar}>

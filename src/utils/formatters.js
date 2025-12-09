@@ -57,7 +57,7 @@ export const formatChange = (change, changeUnit = "%") => {
   if (change === undefined || change === null || change === 0) return "";
 
   // Convertir a porcentaje (0.05 -> 5)
-  const percentage = change * 100;
+  const percentage = change;
 
   const options = {
     minimumFractionDigits: 1,
