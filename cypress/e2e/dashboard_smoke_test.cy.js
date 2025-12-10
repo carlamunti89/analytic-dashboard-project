@@ -26,15 +26,32 @@ describe("Dashboard Smoke Test", () => {
   }); // --- TEST 3: FUNCIONALIDAD DE LA SIDEBAR (Toggle) ---
 
   it("Debe alternar la Sidebar al hacer clic en el botón de hamburguesa", () => {
-    const toggleButton = cy.get(".sidebar-toggle-btn");
+    const toggleButtonSelector = ".sidebar-toggle-btn";
 
+    // 1. Verificar estado inicial (Cerrada)
     cy.get(".sidebar").should("have.class", "sidebar--closed");
-    toggleButton.click({ force: true });
+
+    // --- PRIMER CLIC: ABRE ---
+    cy.get(toggleButtonSelector).should("be.visible").click({ force: true });
+
+    // 2. Verificar estado (Abierta)
     cy.get(".sidebar").should("not.have.class", "sidebar--closed");
-    toggleButton.click({ force: true });
-    cy.get(".sidebar").should("have.class", "sidebar--closed");
-  }); // --- TEST 4: COMPORTAMIENTO AVANZADO (Cerrar al hacer clic en el main-content) ---
 
+    // --- SEGUNDO CLIC: CIERRA ---
+    // Si el problema es de propagación o de un elemento cubriendo,
+    // es mejor confiar en 'force: true'.
+    // Eliminamos el 'log: false' ya que no es la solución.
+    cy.get(toggleButtonSelector).should("be.visible").click({ force: true });
+
+    // 3. Dar más tiempo de espera (si es necesario) o eliminar el cy.wait(500)
+    // El 'cy.should' ya reintenta por 4000ms, pero un pequeño 'wait' a veces ayuda
+    // si la transición CSS es muy lenta.
+    cy.wait(500);
+
+    // 4. Verificar estado final (Cerrada)
+    // Si el error persiste, la implementación del segundo clic es el problema.
+    cy.get(".sidebar").should("have.class", "sidebar--closed");
+  });
   // --- TEST 4: COMPORTAMIENTO AVANZADO (Cerrar al hacer clic en el main-content) ---
   it("Debe cerrar la Sidebar al hacer clic en el contenido principal (overlay)", () => {
     // 1. ABRIR la Sidebar usando el botón de toggle (ya que nace cerrada)
